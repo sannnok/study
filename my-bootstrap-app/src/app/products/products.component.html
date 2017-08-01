@@ -1,0 +1,77 @@
+<div class="container" style="margin-top: 50px; margin-left: 10%">
+<h2>Номенклатура</h2>
+    <div class="row">
+        <div class="col-xs-12 ">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Функции поиска</div> <!-- Material Design Switch Demos -->
+            
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Поиск по вхождению
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        {{ liveSearch ? "Выключить живой поиск" : "Включить живой поиск" }}
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" (click)="toggleLiveSearch()" />
+                            <label for="someSwitchOptionDefault" class="label-primary"></label>
+                        </div>
+                    </li>
+                    <li *ngIf = "liveSearch" class="list-group-item">
+				      <input #search
+				        (keyup)="Search(search.value);"
+				        (blur)="Search(search.value); search.value='' " style="margin-top: 10px;background-color: #c6fba5;width: 100%">
+                    </li>
+                    <li *ngIf = "!liveSearch" class="list-group-item">
+				      <input #search
+				        (keyup.Enter)="Search(search.value);"
+				        (blur)="Search(search.value); search.value='' " style="margin-top: 10px;background-color: #deebf7;width: 100%">
+                    </li>
+                </ul>
+            </div>            
+        </div>
+    </div>
+<div *ngIf="alertTrigger" class="alert alert-success col-sm-12"> 
+  <strong *ngIf ="!warning">Товар  {{product.elem}} успешно добавлен в корзину!</strong>
+  <strong *ngIf ="warning">Ответ mySQL сервера: {{stringCart[1][0].Message}}</strong>
+</div>
+
+<div style ="margin:1%; font-weight:bold">
+  <p *ngIf="successFlag && !string.length">  По запросу "{{searchS}}" не найден ни один элемент.</p>
+</div>
+<table *ngIf="successFlag&&string.length" style="width:100%" class="table table-striped col-xs-6">
+  <tr class ="active">
+    <th>Код</th>
+    <th>Номенклатура</th> 
+    <th>Остаток</th>
+    <th>Ед. изм.</th>
+    <th>Цена</th>
+    <th>Валюта</th>
+    <th>Склад</th>
+  </tr>
+  <tr *ngFor="let hero of string" class="success">
+    <td>
+      <a (click)="addToCart(hero)" >
+        <img src="https://s3.amazonaws.com/cdn.thesurfcaster.com/images/cart.png" alt="В корзину" style="vertical-align: middle" title="В корзину">
+      </a>
+      {{hero.id}}
+    </td>
+    <td>{{hero.elem}}</td>
+    <td>{{hero.number}}</td>
+    <td>{{hero.edizm}}</td>
+    <td>{{hero.price}}</td>
+    <td>{{hero.currency}}</td>
+    <td>{{hero.sklad}}</td>
+  </tr>
+</table>
+<p *ngIf="successFlag&&string.length">
+<a *ngFor= "let a of string; let i = index" routerLink="/products/page/{{i+1}}"><{{i+1}}></a><!-- Послать запрос на показ следующих частей запроса-->    
+</div>
+
+
+

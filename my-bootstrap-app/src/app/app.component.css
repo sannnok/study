@@ -1,0 +1,16 @@
+
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      border: 0;
+    }
+
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #212021 !important;
+      background-color: #fff !important;
+  }
+

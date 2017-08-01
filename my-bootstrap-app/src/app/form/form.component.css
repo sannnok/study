@@ -1,0 +1,18 @@
+.container{
+	background-color: #f7f3f7;
+	margin-bottom: 10%;
+	margin-top: 10%;
+}
+.form-horizontal{
+	margin-top: 10px;
+}
+.btn-default{
+	background-color: #D6D3CE ;
+}
+
+.ng-valid[required], .ng-valid.required{
+	border-left: 5px solid #42a948;
+}
+.ng-invalid:not(form){
+	border-left: 5px solid #a94442;
+}

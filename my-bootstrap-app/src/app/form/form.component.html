@@ -1,0 +1,147 @@
+<div class="container">
+
+  <!-- Логин -->
+  <form *ngIf="signin" class="form-horizontal" #loginForm = "ngForm"> 
+    <fieldset>
+      <!-- Form Name -->
+      <legend>Sign in</legend>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Email</label>
+        <div class="col-md-4">
+          <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" id ="email"  required [(ngModel)]="model.email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name ="email" #email="ngModel">
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+            <div [hidden]="!email.errors.required">
+              Email is required!
+            </div>
+            <div [hidden]="!email.errors.pattern">
+              Must be a valid email!
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="password">Password</label>
+        <div class="col-md-4">
+          <input id="passw" type="password" placeholder="Enter a password" class="form-control input-md" required minlength="6" maxlength="15" [(ngModel)]="model.passw" name="passw" #passw="ngModel">
+          <div *ngIf="passw.errors && (passw.dirty || passw.touched)" class="alert alert-danger">
+            <div [hidden]="!passw.errors.required">
+              Password is required
+            </div>
+            <div [hidden]="!passw.errors.minlength" > 
+              Password must be at least 6 characters long.
+            </div>
+            <div [hidden]="!passw.errors.maxlenth">
+              Password cannot be more than 15 characters long.
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary" (click)="post($event)" [disabled] = "!loginForm.form.valid">SUBMIT</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+<div>{{string.speech}}</div>
+  <!-- Регистрация -->
+  <form *ngIf="!signin" class="form-horizontal">
+    <fieldset>
+      <!-- Form Name -->
+      <legend>Registration</legend>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="fn">First name</label>
+        <div class="col-md-4">
+          <input id="fn" name="fn" type="text" placeholder="first name" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ln">Last name</label>
+        <div class="col-md-4">
+          <input id="ln" name="ln" type="text" placeholder="last name" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="cmpny">Company</label>
+        <div class="col-md-4">
+          <input id="cmpny" name="cmpny" type="text" placeholder="company" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Email</label>
+        <div class="col-md-4">
+          <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="password">Password</label>
+        <div class="col-md-4">
+          <input id="password" name="password" type="password" placeholder="Enter a password" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="add1">Address</label>
+        <div class="col-md-4">
+          <input id="add1" name="add1" type="text" placeholder="" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="city">City</label>
+        <div class="col-md-4">
+          <input id="city" name="city" type="text" placeholder="city" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="zip">Zip Code</label>
+        <div class="col-md-4">
+          <input id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ctry">Country</label>
+        <div class="col-md-4">
+          <input id="ctry" name="ctry" type="text" placeholder="Country" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="phone">Text InputPhone</label>
+        <div class="col-md-4">
+          <input id="phone" name="phone" type="text" placeholder="Phone#" class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="phone">Price type</label>
+        <div class="col-md-4">
+          <input id="phone" name="phone" type="text" placeholder="(Wholesale, retail, etc) " class="form-control input-md" required="">
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <button (click)="toggleFunction()" class="btn btn-default" style="width:100%">{{ signin ? "Register" : "Sign in" }}</button>
+  <div>
+    <H2>Model: </H2>
+    {{modelTest}}
+  </div>
+</div>
