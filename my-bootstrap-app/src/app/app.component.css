@@ -1,16 +1,26 @@
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  border: 0;
+}
 
+.navbar li a,
+.navbar .navbar-brand {
+  color: #fff !important;
+}
 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      border: 0;
-    }
+.navbar-nav li a:hover,
+.navbar-nav li.active a {
+  color: #212021 !important;
+  background-color: #fff !important;
+}
 
-  .navbar li a, .navbar .navbar-brand {
-      color: #fff !important;
-  }
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #212021 !important;
-      background-color: #fff !important;
-  }
+a:hover {
+  cursor: pointer;
+}
 
+.dropdown-menu{
+  background-color: #222222;
+}
+
+[hidden] { display: none !important;}

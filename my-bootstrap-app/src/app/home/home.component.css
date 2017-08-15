@@ -1,6 +1,13 @@
     .jumbotron {
       background-color: #212021;
       color: #bbb;
-      padding: 100px 25px;
+      padding: 100px 0px;
       font-family: Montserrat, sans-serif;
+    }
+    .image{
+		background: #dddddd url("/assets/homeimg/chisinau.jpg") no-repeat;
+		background-position: center center;
+	    height: 500px;
+	    width: 100%;
+	    margin-top: -30px;
     }

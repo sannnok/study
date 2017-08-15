@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 // Import HttpClientModule from @angular/common/http
@@ -15,6 +16,7 @@ import { FormComponent } from './form/form.component';
 import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 import { NotfoundComponent } from './notfound/notfound.component';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     routes,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyAVa3B9POexu_zr1dZsL-2m-A88N7e4j0o' })
   ],
-  providers: [UserService, AuthguardGuard],
+  providers: [UserService, AuthguardGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

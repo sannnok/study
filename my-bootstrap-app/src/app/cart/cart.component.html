@@ -1,22 +1,25 @@
 <div class ="container">
-<h2>Корзина</h2>
-<table *ngIf="successFlag&&string.length" style="width:100%" class="table table-striped">
+<div class="table-responsive">
+  <h2>Корзина</h2>
+  <table *ngIf="successFlag&&string.length"  class="table table-striped">
 
-  <tr class ="active">
-    <th>Номенклатура</th>
-    <th>Склад</th>
-    <th>Количество</th>
-    <th>Тип Цены</th>
-    <th>Валюта</th>
-  </tr>
-  <tr *ngFor="let hero of string" class="success">
-    <td>
-      <a (click)="deleteFromCart(hero)" ><img src="http://dosug.md/i/news/reset.png" alt="Удалить из корзины" style="vertical-align: middle" title="Удалить из корзины"></a>
-       {{hero.nom}}
-    </td>
-    <td>{{hero.sklad}}</td>
-    <td>{{hero.count}}</td>
-    <td>{{hero.price_type}}</td>
-    <td>{{hero.currency}}</td>
-  </tr>
-</table></div>
+    <tr class ="active">
+      <th>Номенклатура</th>
+      <th>Склад</th>
+      <th>Количество</th>
+      <th>Тип Цены</th>
+      <th>Валюта</th>
+    </tr>
+    <tr *ngFor="let hero of string" class="success">
+      <td>
+        <a (click)="deleteFromCart(hero)" ><img src="http://dosug.md/i/news/reset.png" alt="Удалить из корзины" style="vertical-align: middle" title="Удалить из корзины"></a>
+         {{hero.nom}}
+      </td>
+      <td>{{hero.sklad}}</td>
+      <td>{{hero.count}}</td>
+      <td>{{hero.price_type}}</td>
+      <td>{{hero.currency}}</td>
+    </tr>
+  </table>
+  </div>
+</div>

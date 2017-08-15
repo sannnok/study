@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class CartComponent implements OnInit {
 
-  ngrok:string;
+  server:string;
   string:string;
   successFlag:boolean;
 
@@ -18,34 +18,26 @@ export class CartComponent implements OnInit {
     this.string ='',
     this.successFlag = false
   }
-  cart = [1,123,1234,12];
-  push(array){
-  	
-  	console.log(array[0],' ',array[1]);
-  }
+ 
   ngOnInit() {
-    this.ngrok = "8fabfbab";
+    this.server = "188.237.141.56:2020";
   	// Здесь можно выполнять загрузку данных с сервера или из других источников данных.
     this.getToCartFromServer();
   }
 
-
-
-
-
-
-
-
-
-
-
   HTTPVar;
+  HTTPVar1;
   
   httpSuccess(res){
     this.HTTPVar = res.json();
     this.string = this.HTTPVar;
-    console.log('string   :   ', this.string)
     this.successFlag = true;
+  }
+    httpSuccessDeleteToCart(res){
+    this.HTTPVar1 = res.json();
+   // this.string = this.HTTPVar1;
+    //console.log('string   :   ', this.HTTPVar1)
+    this.getToCartFromServer();
   }
 
   httpError(err){
@@ -54,16 +46,29 @@ export class CartComponent implements OnInit {
   }
 
   getToCartFromServer(){
-    console.log('',this.user.getUserId())
     this.http
-      .get("http://"+ this.ngrok+".ngrok.io/getToCart?user_id="+this.user.getUserId()+"&price_type=1")
+      .get("http://"+ this.server+"/getToCart?user_id="+this.user.getUserId()+"&price_type=1")
       .toPromise()
       .then(res => this.httpSuccess(res))
       .catch(res => this.httpError(res))
   }
 
+  body = {}; //{response:"Post: Hello from Angular!"}
   deleteFromCart(item:any){
-    console.log("Удаление...");
+      this.body = {result:{
+        data:{
+          user_id : this.user.getUserId(),
+          nom_id : item.nom_id, 
+          sklad_id : item.sklad_id, 
+        },
+        action:'addToCart'
+      }};
+       //console.log('1 ',item.nom_id, ' ', item.sklad_id)
+      this.http
+        .post("http://"+ this.server+"/deleteFromCart",this.body)
+        .toPromise()
+        .then(res => this.httpSuccessDeleteToCart(res))
+        .catch(res => this.httpError(res)) 
   }
 
 }

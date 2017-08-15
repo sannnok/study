@@ -14,7 +14,7 @@ import { UserService } from '../user.service';
 })
 export class FormComponent implements OnInit {
 
-  ngrok:string;
+  server:string;
   string:any;
   successFlag:boolean;
 	formMethod:string;
@@ -33,8 +33,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
   	// Здесь можно выполнять загрузку данных с сервера или из других источников данных.
-  	  	console.log(this.formMethod)
-        this.ngrok = "8fabfbab"
+  	  	//console.log(this.formMethod)
+        this.server = "188.237.141.56:2020"
     //this.adminBoolean = false;
     //console.log('adminBoolean',this.adminBoolean)
   }
@@ -56,18 +56,19 @@ export class FormComponent implements OnInit {
     this.string = this.HTTPVar;
 
     this.successFlag = true;
-    console.log("Success! ",this.string.login);
+    //console.log("Success! ",this.string.login);
 
 
     if(this.string.login == true){
       this.user.setUserLoggedIn(this.string.username,this.string.userid);
-      this._router.navigate(['products'])
+      this._router.navigate(['products/page/1'])
+      localStorage.setItem('currentUser', JSON.stringify({ username: this.string.username, token: this.string.token, userid: this.string.userid}));
       //this.adminBoolean = true;
-    //console.log('adminBoolean',this.adminBoolean)
     }else{
       this.model.email = '';
       this.model.passw = '';
     }
+    //console.log('token: ', this.string.token)
   }
 
   httpError(err){
@@ -95,13 +96,12 @@ export class FormComponent implements OnInit {
 
   post(e){
     this.http
-      .post("http://"+ this.ngrok+".ngrok.io/echo",this.body)
+      .post("http://"+ this.server+"/echo",this.body)
       .toPromise()
       .then(res => this.httpSuccess(res))
       .catch(res => this.httpError(res))  
 
       console.log(e)
-
   }
 
 }

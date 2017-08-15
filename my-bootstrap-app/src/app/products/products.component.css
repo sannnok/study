@@ -42,3 +42,14 @@
     background: inherit;
     left: 20px;
 }
+.im{
+
+}
+
+.list-group-item,.panel-heading{
+   height: 40px;
+}
+
+a:hover {
+  cursor: pointer;
+}

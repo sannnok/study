@@ -8,9 +8,28 @@ export class AuthguardGuard implements CanActivate {
 
   constructor(private user: UserService){}
 
+
+
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.user.getUserLoggedIn();
+
+  	// if (localStorage.getItem('currentUser')){
+  	// 	return true;
+  	// }else{
+  	// 	return false;
+  	// }
+
+	if ( this.user.tokenNotExpired()){
+		return this.user.getUserLoggedIn();
+	}else{
+		return this.user.getUserLoggedIn();
+	}
+
+    //return this.user.getUserLoggedIn();
+
   }
+
+
 }

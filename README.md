@@ -1,2 +1,0 @@
-# study
-Test tasks

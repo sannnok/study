@@ -1,32 +1,39 @@
 
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" (document:click)="autoCloseForDropdownCars($event)">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <!-- Триггер collapse в мобильном режиме бутсреп-->
+      <button type="button" class="navbar-toggle" data-toggle="" data-target="#myNavbar" id = "button">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#myPage">EVX</a>
     </div>
+    <!-- Триггер collapse в мобильном режиме бутсреп-->
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a routerLink = "home">Home</a></li>
-        <li *ngIf="user.getUserLoggedIn()"><a routerLink = "products">Products</a></li>
-        <li><a href="#">Deals</a></li>
-        <li><a href="#">Stores</a></li>
-        <li><a routerLink = "contact">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink = "form/signin"><span class="glyphicon glyphicon-user"></span> {{user.getUserLoggedIn() ? " Hello, " : " Sign in " }}{{user.username}}</a></li>
-        <li *ngIf="user.getUserLoggedIn()">
+      <ul class=" nav navbar-nav">
+        <li class="hid"><a routerLink = "home">Home</a></li>
+        <li class="hid" [hidden]="!user.getUserLoggedIn()"><a routerLink = "products/page/1">Products</a></li>
+        <li class="hid"><a routerLink = "contact">Contact</a></li>
+      </ul> 
+      <ul class=" nav navbar-nav navbar-right">
+        <li class="hid"><a [hidden]="user.getUserLoggedIn()" routerLink = "form/signin"><span class="glyphicon glyphicon-user"></span> {{"Sign in"}}</a></li>
+        <li><a [hidden]="!user.getUserLoggedIn()" class="dropdown" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{" Hello"}}, {{user.username}}<span class="caret"></span></a>
+          <ul class="  dropdown-menu">
+            <li class="hid"><a >My profile</a></li>
+            <li class="hid"><a >My orders</a></li>
+            <li class="hid"><a (click)="logOut()" >Log out</a></li>
+          </ul>
+        </li> 
+        <li [hidden]="!user.getUserLoggedIn()" class="hid">
           <a routerLink = "cart">
             <span class="glyphicon glyphicon-shopping-cart"></span>
             Cart
           </a>
         </li>
-      </ul>
+      </ul> 
     </div>
   </div>
 </nav>
